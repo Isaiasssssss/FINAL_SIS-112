@@ -1,3 +1,1 @@
-# Proyecto-Final-de-Programaci-n-I-
-Repositorio creado para el desarrollo e investigación del proyecto final de Programación SIS_112
-....
+El presente repositorio albergará el proyecto final de la materia Programación I SIS-112. Acerca del proyecto, este estuvo a cargo de los estudiantes Isaías Alejandro Gareca Méndez, Erwin Mijail Erazo Mamani, quienes realizaron "BIOPY", un software que busca poder analizar grandes cantidades de laboratorio, e incluso poder conocer un poco más respecto a las medidas de componentes del cuerpo humano y asimismo, exportar todos los datos obtenidos con el fin de determinar el estado de salud de los pacientes. Se busca poder ir incorporando nuevas funciones con el paso del tiempo.

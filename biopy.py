@@ -1,3 +1,7 @@
+import csv
+import sys
+import os
+import subprocess
 import tkinter
 from tkinter import messagebox
 import random
@@ -35,12 +39,21 @@ apellidos = ["SOLANO", "PADILLA", "ROCHA", "ORELLANA", "ROJAS", "BASSWERNER", "O
              "RIVAS", "RIVERO", "MOLINA", "VERA", "GARECA", "DUARTE", "AMAS", "MONTALVO", "CHOSCO"]
 genero = [""]
 
+paciente_contador = 0  
+
+
 # Cambiar Imagen:
+
+def resource_path(relative_path):
+    """Obtiene la ruta absoluta para los recursos empaquetados."""
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
 
 def cambiarimagen():
     global ventanaprincipal
     if ventanaprincipal == "ventana1":
-        imagen1 = tkinter.PhotoImage(file="IBIO.png")
+        imagen1 = tkinter.PhotoImage(file=resource_path("IBIO.png"))
         labelinicio.config(image=imagen1)
         labelinicio.image = imagen1
     elif ventanaprincipal == "ventana2":
@@ -662,26 +675,6 @@ def aleatorio():
         bilirrubinar = round(bilirrubina, 2)
         entry5.insert(tkinter.END, str(bilirrubinar))
 
-#  Eliminar Datos:
-
-def eliminar():
-    respuesta = messagebox.askquestion("CONFIRMACIÓN", "¿ESTÁ SEGURO DE ELIMINAR TODOS LOS DATOS?")
-    if respuesta == "yes":
-        entry3.delete(0, tkinter.END)
-        entry4.delete(0, tkinter.END)
-        entry5.delete(0, tkinter.END)
-        entry6.delete(0, tkinter.END)
-        entry7.delete(0, tkinter.END)
-        entry8.delete(0, tkinter.END)
-        entry9.delete(0, tkinter.END)
-        entry10.delete(0, tkinter.END)
-        entry11.delete(0, tkinter.END)
-        entry12.delete(0, tkinter.END)
-        entry13.delete(0, tkinter.END)
-        entry14.delete(0, tkinter.END)
-        entry15.delete(0, tkinter.END)
-        entry16.delete(0, tkinter.END)
-        
 # GENEROS:
 
 def masculino():
@@ -739,6 +732,155 @@ def definicion10():
 def definicion11():
     messagebox.showinfo("¿SABIAS QUÉ?",
                         "LOS ELECTROLITOS DE CALCIO SON IMPORTANTES PARA LAS FUNCIONES MUSCULARES, CARDIOVASCULARES, SEAS Y SANGUÍNEAS.")
+             
+             
+pacientes_guardados = []
+
+pacientes = []  
+
+def guardar_datos_paciente():
+    global paciente_contador
+    global nombre, apellido, edad, genero, hemoglobina, plaquetas, bilirrubina, globulosrojos, globulosblancos, glucosa, creatinina, colesterol, sodio, potasio, calcio
+    global estadohemoglobina, estadoplaquetas, estadobilirrubina, estadoglobulosrojos, estadoglobulosblancos, estadoglucosa, estadocreatinina, estadocolesterol, estadosodio, estadopotasio, estadocalcio
+
+   
+    paciente_contador += 1
+
+   
+    datos_paciente = {
+        "Nombre": nombre,
+        "Apellido": apellido,
+        "Edad": edad,
+        "Género": genero,
+        "Datos Médicos": {
+            "Hemoglobina": (hemoglobina, estadohemoglobina),
+            "Plaquetas": (plaquetas, estadoplaquetas),
+            "Bilirrubina": (bilirrubina, estadobilirrubina),
+            "Glóbulos Rojos": (globulosrojos, estadoglobulosrojos),
+            "Glóbulos Blancos": (globulosblancos, estadoglobulosblancos),
+            "Glucosa": (glucosa, estadoglucosa),
+            "Creatinina": (creatinina, estadocreatinina),
+            "Colesterol": (colesterol, estadocolesterol),
+            "Sodio": (sodio, estadosodio),
+            "Potasio": (potasio, estadopotasio),
+            "Calcio": (calcio, estadocalcio),
+        }
+    }
+
+    pacientes.append(datos_paciente)  
+    messagebox.showinfo("Guardado", f"Paciente {paciente_contador} guardado.")
+    
+    
+
+def agregar_nuevo_paciente():
+    respuesta = messagebox.askquestion("Nuevo Paciente", "¿Deseas agregar un nuevo paciente?")
+    if respuesta == "yes":
+        entry3.delete(0, tkinter.END)
+        entry4.delete(0, tkinter.END)
+        entry5.delete(0, tkinter.END)
+        entry6.delete(0, tkinter.END)
+        entry7.delete(0, tkinter.END)
+        entry8.delete(0, tkinter.END)
+        entry9.delete(0, tkinter.END)
+        entry10.delete(0, tkinter.END)
+        entry11.delete(0, tkinter.END)
+        entry12.delete(0, tkinter.END)
+        entry13.delete(0, tkinter.END)
+        entry14.delete(0, tkinter.END)
+        entry15.delete(0, tkinter.END)
+        entry16.delete(0, tkinter.END)
+# GENEROS:
+
+def masculino():
+    global genero
+    messagebox.showwarning("ADVERTENCIA", "ACABAS DE ELEGIR EL GÉNERO MASCULINO")
+    genero = "HOMBRE"
+
+def femenino():
+    global genero
+    messagebox.showwarning("ADVERTENCIA", "ACABAS DE ELEGIR EL GÉNERO FEMENINO")
+    genero = "MUJER"
+
+# DEFINICIONES:
+
+def definicion1():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LA HEMOGLOBINA ES UNA PROTEÍNA EN LOS GLÓBULOS ROJOS QUE TRANSPORTA OXÍGENO DESDE LOS PULMONOS HACIA LOS TEJIDOS Y DIÓXIDO DE CARBONO DESDE LOS TEJIDOS HACIA LOS PULMONES.")
+
+def definicion2():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LAS PLAQUETAS SON FRAGMENTOS CELULARES QUE PARTICIPAN EN LA COAGULACIÓN DE LA SANGRE, AYUDANDO A DETENER EL SANGRADO CUANDO OCURRE UNA LESIÓN.")
+
+def definicion3():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LA BILIRRUBINA ES UN PIGMENTO AMARRILLO PRODUCIDO DURANTE LA DESCOMPOSICIÓN DE LA HEMOGLOBINA DE LOS GLÓBULOS ROJOS VIEJOS.")
+
+def definicion4():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LOS GLÓBULOS ROJOS SON CÉLULAS SANGUÍNEAS RESPONSABLES DE TRANSPORTAR OXÍGENO A LOS TEJIDOS DEL CUERPO Y ELIMINAR DIÓXIDO DE CARBONO.")
+    
+def definicion5():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LOS GLÓBULOS BLANCOS SON CÉLULAS DEL SISTEMA INMUNOLÓGICO QUE PROTEGEN AL CUERPO CONTRA INFECCIONES Y AYUDAN EN LA DEFENSA CONTRA AGENTES EXTRAÑOS.")
+
+def definicion6():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LA GLUCOSA ES EL AZUCAR PRESENTE EN LA SANGRE, FUNDAMENTAL PARA PROPORCIONAR ENERGÍA AL CUERPO.")
+        ventana7.withdraw()
+        ventana2.deiconify()
+        messagebox.showinfo("Nuevo Paciente", "Listo para registrar un nuevo paciente.")
+        
+def exportar():
+    if not pacientes:
+        messagebox.showerror("Error", "No hay pacientes registrados para exportar.")
+        return
+
+    respuesta = messagebox.askquestion("Exportar", "¿Deseas exportar los datos de todos los pacientes en formato CSV?")
+    if respuesta == "yes":
+        with open("datos_pacientes.csv", mode="w", newline='') as archivo_csv:
+            escritor = csv.writer(archivo_csv, delimiter=" ")
+            escritor.writerow(["-------- DATOS ANALIZADOS --------"]) 
+
+            for i, paciente in enumerate(pacientes, 1):
+                escritor.writerow([f"Paciente {i}"])
+                escritor.writerow(["Nombre:", paciente["Nombre"]])
+                escritor.writerow(["Apellido:", paciente["Apellido"]])
+                escritor.writerow(["Edad:", paciente["Edad"]])
+                escritor.writerow(["Género:", paciente["Género"]])
+                escritor.writerow(["-------- Datos Médicos --------"])
+
+                for key, value in paciente["Datos Médicos"].items():
+                    escritor.writerow([f"{key}:", value[0]])
+                    escritor.writerow([f"Estado {key}:", value[1]])
+
+                escritor.writerow([]) 
+                escritor.writerow(["-------- FIN DE PACIENTE --------"])
+                escritor.writerow([])
+
+            escritor.writerow(["-------- ANÁLISIS COMPLETO --------"]) 
+
+        subprocess.run(["notepad", "datos_pacientes.csv"], shell=True)
+
+
+def definicion7():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LA CREATININA ES UN DESECHO PRODUCIDO POR LOS MÚSCULOS, MEDIDO PARA EVALUAR LA FUNCIÓN RENAL.")
+
+def definicion8():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "EL COLESTEROL ES UNA SUSTANCIA GRASA NECESARIA PARA ALGUNAS FUNCIONES DEL CUERPO, PERO SU EXCESO PUEDE CAUSAR PROBLEMAS CARDIOVASCULARES.")
+    
+def definicion9():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LOS ELECTROLITOS DE SODIO SON MINERALES ESENCIALES PARA EL EQUILIBRIO DE LÍQUIDOS Y FUNCIONES MUSCULARES/NEUROLÓGICAS.")
+
+def definicion10():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LOS ELECTROLITOS DE POTASIO SON IMPORTANTES PARA LA FUNCIÓN MUSCULAR, CARDIACA Y EL EQUILIBRIO ELECTROLÍTICO.")
+
+def definicion11():
+    messagebox.showinfo("¿SABIAS QUÉ?",
+                        "LOS ELECTROLITOS DE CALCIO SON IMPORTANTES PARA LAS FUNCIONES MUSCULARES, CARDIOVASCULARES, SEAS Y SANGUÍNEAS.")
                         
 # Ventana 1:
 
@@ -756,7 +898,7 @@ label1.pack()
 entry1 = tkinter.Entry(font=("Comic Sans MS", 16))
 entry1.place(x=130, y=370)
 
-entry2 = tkinter.Entry(font=("Comic Sans MS", 16))
+entry2 = tkinter.Entry(font=("Comic Sans MS", 16), show="*")  # Contraseña
 entry2.place(x=130, y=525)
 
 boton1 = tkinter.Button(ventana1, text="INICIAR",font=("Comic Sans MS", 8), height=3, width=17, command=irventana2)
@@ -967,6 +1109,7 @@ boton22.place(x=130, y=620)
 boton23 = tkinter.Button(ventana6, text="SIGUIENTE", font=("Comic Sans MS", 8), height=2, width=15, command=irventana7)
 boton23.place(x=1100, y=620)
 
+
 ventana6.withdraw()
 
 # Ventana 7:
@@ -1000,6 +1143,28 @@ text15.place(x=892, y=555)
 boton24 = tkinter.Button(ventana7, text="REGRESAR", font=("Comic Sans MS", 8), height=2, width=15, command=regresarventana6)
 boton24.place(x=130, y=620)
 
+boton25 = tkinter.Button(ventana7, text="EXPORTAR", font=("Comic Sans MS", 8), height=2, width=15, command=exportar)
+boton25.place(x=1100, y=620)
+
+# Botón para guardar datos del paciente
+boton_guardar = tkinter.Button(
+    ventana7, 
+    text="Guardar Datos", 
+    font=("Comic Sans MS", 8), 
+    height=2, 
+    width=15, 
+    command=guardar_datos_paciente)
+boton_guardar.place(x=494, y=620)
+
+# Botón para ingresar un nuevo perfil
+boton_nuevo = tkinter.Button(
+    ventana7, 
+    text="Ingresar Nuevo Perfil", 
+    font=("Comic Sans MS", 8), 
+    height=2, 
+    width=20, 
+    command=agregar_nuevo_paciente)
+boton_nuevo.place(x=727, y=620)
 
 
 ventana7.withdraw()
