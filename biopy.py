@@ -791,7 +791,7 @@ def guardar_datos_paciente():
     
 
 def agregar_nuevo_paciente():
-    respuesta = messagebox.askquestion("Nuevo Paciente", "¿Deseas agregar un nuevo paciente?")
+    respuesta = messagebox.askquestion("NUEVO PACIENTE", "¿DESEAS AGERGAR UN NUEVO PACIENTE?")
     if respuesta == "yes":
         entry3.delete(0, tkinter.END)
         entry4.delete(0, tkinter.END)
