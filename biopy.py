@@ -1114,6 +1114,3 @@ ventana7.withdraw()
 
 cambiarimagen()
 ventana1.mainloop()
-
-
-        
