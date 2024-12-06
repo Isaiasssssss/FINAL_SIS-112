@@ -1,0 +1,64 @@
+"-------- DATOS ANALIZADOS --------"
+"Paciente 1"
+Nombre: NICOLE
+Apellido: GARECA
+Edad: 13
+Género: HOMBRE
+"-------- Datos Médicos --------"
+Hemoglobina: 14.86
+"Estado Hemoglobina:" NORMAL
+Plaquetas: 162172.0
+"Estado Plaquetas:" EXCESO
+Bilirrubina: 0.85
+"Estado Bilirrubina:" NORMAL
+"Glóbulos Rojos:" 5664639.0
+"Estado Glóbulos Rojos:" EXCESO
+"Glóbulos Blancos:" 13722.0
+"Estado Glóbulos Blancos:" EXCESO
+Glucosa: 113.0
+"Estado Glucosa:" 
+Creatinina: 1.2
+"Estado Creatinina:" EXCESO
+Colesterol: 134.0
+"Estado Colesterol:" NORMAL
+Sodio: 112.0
+"Estado Sodio:" DEFICIENTE
+Potasio: 4.28
+"Estado Potasio:" NORMAL
+Calcio: 8.78
+"Estado Calcio:" DEFICIENTE
+
+"-------- FIN DE PACIENTE --------"
+
+"Paciente 2"
+Nombre: RODRIGO
+Apellido: GARECA
+Edad: 34
+Género: HOMBRE
+"-------- Datos Médicos --------"
+Hemoglobina: 5.56
+"Estado Hemoglobina:" DEFICIENTE
+Plaquetas: 148499.0
+"Estado Plaquetas:" DEFICIENTE
+Bilirrubina: 1.42
+"Estado Bilirrubina:" EXCESO
+"Glóbulos Rojos:" 4498837.0
+"Estado Glóbulos Rojos:" DEFICIENTE
+"Glóbulos Blancos:" 14337.0
+"Estado Glóbulos Blancos:" EXCESO
+Glucosa: 55.0
+"Estado Glucosa:" DEFICIENTE
+Creatinina: 1.31
+"Estado Creatinina:" EXCESO
+Colesterol: 175.0
+"Estado Colesterol:" NORMAL
+Sodio: 120.0
+"Estado Sodio:" DEFICIENTE
+Potasio: 3.92
+"Estado Potasio:" NORMAL
+Calcio: 11.62
+"Estado Calcio:" EXCESO
+
+"-------- FIN DE PACIENTE --------"
+
+"-------- ANÁLISIS COMPLETO --------"
